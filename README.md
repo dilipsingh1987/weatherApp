@@ -76,6 +76,7 @@ OpenWeatherMap API key is required to run the app.
 ![Search Weather](src/assets/images/screenshot1.png)
 ![Search Weather](src/assets/images/screenshot2.png)
 ![Search Weather](src/assets/images/screenshot5.png)
+![screenshot2](https://github.com/user-attachments/assets/2126edfe-888e-4a36-a1db-6209749159ea)
 
 ### 🌗 Dark Theme
 
