@@ -3,12 +3,12 @@ import { OPENWEATHER_API_KEY, BASE_URL } from '../config/apiConfig';
 
 export const fetchWeatherByCity = async (city: string) => {
   try {
-    console.log('API KEY:', OPENWEATHER_API_KEY);
+    //console.log('API KEY:', OPENWEATHER_API_KEY);
 
     const response = await axios.get(`${BASE_URL}/weather`, {
       params: {
         q: city,
-        appid: "6a61be481ad1026badcb05cce2371fd9",
+        appid: OPENWEATHER_API_KEY,
         units: 'metric',
       },
     });

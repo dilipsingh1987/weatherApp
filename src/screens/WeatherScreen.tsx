@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useWeather} from '../hooks/useWeather';
 import {useTheme} from '../theme/ThemeContext';
-import screenStyle from '../styles/HomeScreenStyles';
+import screenStyle from '../styles/screenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WeatherScreen = () => {
