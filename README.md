@@ -74,17 +74,17 @@ OpenWeatherMap API key is required to run the app.
 📸 ### 🔍 Search Weather
 
 ![Search Weather](src/assets/images/screenshot1.png)
-![Search Weather](assets/images/screenshot2.png)
-![Search Weather](assets/images/screenshot5.png)
+![Search Weather](src/assets/images/screenshot2.png)
+![Search Weather](src/assets/images/screenshot5.png)
 
 ### 🌗 Dark Theme
 
-![Dark Theme](assets/images/screenshot3.png)
-![Dark Theme](assets/images/screenshot4.png)
-![Dark Theme](assets/images/screenshot6.png)
+![Dark Theme](src/assets/images/screenshot3.png)
+![Dark Theme](src/assets/images/screenshot4.png)
+![Dark Theme](src/assets/images/screenshot6.png)
 
 ### Default Theme
-![By Default Theme](assets/images/screenshot7.png)
+![By Default Theme](src/assets/images/screenshot7.png)
 
 📜 License
 This project is for educational/demo purposes.
