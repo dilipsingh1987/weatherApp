@@ -91,6 +91,8 @@ Testing: Jest is configured for unit testing with axios-mock-adapter to mock API
 ![Dark Theme](assets/images/screenshot3.png)
 ![Dark Theme](assets/images/screenshot4.png)
 ![Dark Theme](assets/images/screenshot6.png)
+
+### Default Theme
 ![By Default Theme](assets/images/screenshot7.png)
 
 📜 License
