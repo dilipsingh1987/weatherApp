@@ -73,7 +73,7 @@ OpenWeatherMap API key is required to run the app.
 
 📸 ### 🔍 Search Weather
 
-![Search Weather](../assets/images/screenshot1.png)
+![Search Weather](src/assets/images/screenshot1.png)
 ![Search Weather](assets/images/screenshot2.png)
 ![Search Weather](assets/images/screenshot5.png)
 
