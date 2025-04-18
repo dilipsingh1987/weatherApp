@@ -1,97 +1,98 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+React Native Weather App
+A simple weather application built with React Native that allows users to search for the current weather by city name. It features a dark/light theme toggle, persistent last search using AsyncStorage, and data from the OpenWeatherMap API.
 
-# Getting Started
+🚀 Getting Started
+📦 Prerequisites
+Node.js ≥ 16.x
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+npm or yarn
 
-## Step 1: Start Metro
+React Native CLI
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+Android Studio or Xcode (for running on emulator or device)
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+🛠 Installation
+Clone the repository or unzip the folder.
 
-```sh
-# Using npm
-npm start
+bash
+Copy
+Edit
+git clone https://github.com/your-username/react-native-weather-app.git
+cd react-native-weather-app
+Install dependencies:
 
-# OR using Yarn
-yarn start
-```
+bash
+Copy
+Edit
+npm install
+# or
+yarn
+Install iOS pods (only for macOS):
 
-## Step 2: Build and run your app
+bash
+Copy
+Edit
+cd ios && pod install && cd ..
+Create a .env file in the root and add your OpenWeatherMap API key:
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+ini
+Copy
+Edit
+API_KEY=your_api_key_here
+▶️ Running the App
+Android:
+bash
+Copy
+Edit
+npx react-native run-android
+iOS (macOS only):
+bash
+Copy
+Edit
+npx react-native run-ios
+🧪 Running Tests
+bash
+Copy
+Edit
+npx jest
+📂 Project Structure
+bash
+Copy
+Edit
+src/
+├── components/        # Reusable UI components
+├── hooks/             # Custom hooks
+├── redux/             # State management
+├── screens/           # App screens
+├── services/          # API calls
+├── styles/            # Shared styles
+├── theme/             # Theme context
+├── utils/             # Helper functions
+└── types/             # TypeScript interfaces
+🧱 Architectural Decisions
+State Management: Redux Toolkit is used for managing weather-related state.
 
-### Android
+API Layer: All network requests are abstracted in weatherService.ts to separate business logic from UI.
 
-```sh
-# Using npm
-npm run android
+Theme Management: A custom ThemeContext enables toggling between dark and light mode.
 
-# OR using Yarn
-yarn android
-```
+Persistent Storage: AsyncStorage is used to store the last searched city, retrieved automatically on app start.
 
-### iOS
+Testing: Jest is configured for unit testing with axios-mock-adapter to mock API requests.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+📸 ### 🔍 Search Weather
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+![Search Weather](assets/images/screenshot1.png)
+![Search Weather](assets/images/screenshot2.png)
+![Search Weather](assets/images/screenshot5.png)
 
-```sh
-bundle install
-```
+### 🌗 Dark Theme
 
-Then, and every time you update your native dependencies, run:
+![Dark Theme](assets/images/screenshot3.png)
+![Dark Theme](assets/images/screenshot4.png)
+![Dark Theme](assets/images/screenshot6.png)
+![Dark Theme](assets/images/screenshot7.png)
 
-```sh
-bundle exec pod install
-```
+📜 License
+This project is for educational/demo purposes.
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
