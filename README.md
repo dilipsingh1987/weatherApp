@@ -84,7 +84,8 @@ OpenWeatherMap API key is required to run the app.
 
 
 ### Default Theme
-![By Default Theme](src/assets/images/screenshot7.png)
+![screenshot7](https://github.com/user-attachments/assets/7d72a6db-2ee8-4279-9f17-42c48497257e)
+
 
 📜 License
 This project is for educational/demo purposes.
