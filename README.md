@@ -10,14 +10,13 @@ npm or yarn
 React Native CLI
 
 Android Studio or Xcode (for running on emulator or device)
-
-🛠 Installation
+<details> <summary>Installation:</summary>
 Clone the repository or unzip the folder.
 
 
 git clone https://github.com/your-username/react-native-weather-app.git
 cd react-native-weather-app
-
+</details>
 <details> <summary>Install dependencies:</summary>
 
 npm install
@@ -31,17 +30,20 @@ Create a .env file in the root and add your OpenWeatherMap API key:
 
 
 API_KEY=your_api_key_here
-▶️ Running the App
+</details>
+<details> <summary>Running the App:</summary>
 Android:
 
 npx react-native run-android
 iOS (macOS only):
 
 npx react-native run-ios
-🧪 Running Tests
+</details>
+<details> <summary> Running Testsp:</summary>
 
 npx jest
-📂 Project Structure
+</details>
+<details> <summary> Project Structure:</summary>
 
 src/
 ├── components/        # Reusable UI components
