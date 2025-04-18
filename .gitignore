@@ -35,6 +35,27 @@ local.properties
 !debug.keystore
 .kotlin/
 
+coverage/
+jest-cache/
+jest-coverage/
+
+# OS Files
+Thumbs.db
+Desktop.ini
+
+# Bundles
+*.jsbundle
+*.pack
+
+# Metro cache
+metro-cache/
+.cache/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # node.js
 #
 node_modules/
