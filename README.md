@@ -17,8 +17,8 @@ Clone the repository or unzip the folder.
 
 git clone https://github.com/your-username/react-native-weather-app.git
 cd react-native-weather-app
-Install dependencies:
-<details> <summary>Example</summary>
+
+<details> <summary>Install dependencies:</summary>
 
 npm install
 # or
