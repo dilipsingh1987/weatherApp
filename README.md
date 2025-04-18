@@ -67,9 +67,13 @@ Persistent Storage: AsyncStorage is used to store the last searched city, retrie
 
 Testing: Jest is configured for unit testing with axios-mock-adapter to mock API requests.
 
+OpenWeatherMap API key is required to run the app.
+
+
+
 📸 ### 🔍 Search Weather
 
-![Search Weather](assets/images/screenshot1.png)
+![Search Weather](../assets/images/screenshot1.png)
 ![Search Weather](assets/images/screenshot2.png)
 ![Search Weather](assets/images/screenshot5.png)
 
