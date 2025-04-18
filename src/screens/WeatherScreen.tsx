@@ -5,15 +5,16 @@ import {
   TextInput,
   Button,
   ActivityIndicator,
-  Image,
 } from 'react-native';
 import {useWeather} from '../hooks/useWeather';
 import {useTheme} from '../theme/ThemeContext';
 import screenStyle from '../styles/screenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ThemeToggle from '../components/ThemeToggle';
+import WeatherCard from '../components/WeatherCard';
 
 const WeatherScreen = () => {
-  const {isDarkMode, toggleTheme} = useTheme();
+  const {isDarkMode} = useTheme();
   const [city, setCity] = useState('');
   const [lastCityLabel, setLastCityLabel] = useState('');
   const {data, loading, error, getWeather} = useWeather();
@@ -56,32 +57,12 @@ const WeatherScreen = () => {
       />
       <Button title="Get Weather" onPress={() => getWeather(city)} />
       <Button title="Clear Last Search" onPress={clearLastSearch} />
-      <Button title="Toggle Theme" onPress={toggleTheme} />
+      {/* <Button title="Toggle Theme" onPress={toggleTheme} /> */}
+      <ThemeToggle></ThemeToggle>
 
       {loading && <ActivityIndicator />}
       {error && <Text style={screenStyle.textStyle}>{error}</Text>}
-      {data && (
-        <View>
-          <Text style={screenStyle.textStyle}>{data.name}</Text>
-          <Text style={screenStyle.textStyle}>{data.main.temp}°C</Text>
-          <View style={screenStyle.row}>
-            <Text style={screenStyle.textStyle}>{data.weather[0].main}</Text>
-            <Image
-              source={
-                data.weather[0].main.toLowerCase() === 'rain'
-                  ? require('../assets/icons/icon_rainy.png')
-                  : data.weather[0].main.toLowerCase() === 'clear'
-                  ? require('../assets/icons/icon_sun.png')
-                  : data.weather[0].main.toLowerCase() === 'clouds'
-                  ? require('../assets/icons/icon_cloud.png')
-                  : require('../assets/icons/icon_sun.png') // default
-              }
-              style={screenStyle.icon}
-              resizeMode="contain"
-            />
-          </View>
-        </View>
-      )}
+      {data && <WeatherCard data={data} />}
     </View>
   );
 };
