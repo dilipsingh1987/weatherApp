@@ -14,51 +14,35 @@ Android Studio or Xcode (for running on emulator or device)
 🛠 Installation
 Clone the repository or unzip the folder.
 
-bash
-Copy
-Edit
+
 git clone https://github.com/your-username/react-native-weather-app.git
 cd react-native-weather-app
 Install dependencies:
+<details> <summary>Example</summary>
 
-bash
-Copy
-Edit
 npm install
 # or
 yarn
 Install iOS pods (only for macOS):
 
-bash
-Copy
-Edit
+
 cd ios && pod install && cd ..
 Create a .env file in the root and add your OpenWeatherMap API key:
 
-ini
-Copy
-Edit
+
 API_KEY=your_api_key_here
 ▶️ Running the App
 Android:
-bash
-Copy
-Edit
+
 npx react-native run-android
 iOS (macOS only):
-bash
-Copy
-Edit
+
 npx react-native run-ios
 🧪 Running Tests
-bash
-Copy
-Edit
+
 npx jest
 📂 Project Structure
-bash
-Copy
-Edit
+
 src/
 ├── components/        # Reusable UI components
 ├── hooks/             # Custom hooks
@@ -69,6 +53,7 @@ src/
 ├── theme/             # Theme context
 ├── utils/             # Helper functions
 └── types/             # TypeScript interfaces
+</details>
 🧱 Architectural Decisions
 State Management: Redux Toolkit is used for managing weather-related state.
 
