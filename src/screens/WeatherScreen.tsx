@@ -5,6 +5,7 @@ import {
   TextInput,
   Button,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import {useWeather} from '../hooks/useWeather';
 import {useTheme} from '../theme/ThemeContext';
@@ -63,7 +64,22 @@ const WeatherScreen = () => {
         <View>
           <Text style={screenStyle.textStyle}>{data.name}</Text>
           <Text style={screenStyle.textStyle}>{data.main.temp}°C</Text>
-          <Text style={screenStyle.textStyle}>{data.weather[0].main}</Text>
+          <View style={screenStyle.row}>
+            <Text style={screenStyle.textStyle}>{data.weather[0].main}</Text>
+            <Image
+              source={
+                data.weather[0].main.toLowerCase() === 'rain'
+                  ? require('../assets/icons/icon_rainy.png')
+                  : data.weather[0].main.toLowerCase() === 'clear'
+                  ? require('../assets/icons/icon_sun.png')
+                  : data.weather[0].main.toLowerCase() === 'clouds'
+                  ? require('../assets/icons/icon_cloud.png')
+                  : require('../assets/icons/icon_sun.png') // default
+              }
+              style={screenStyle.icon}
+              resizeMode="contain"
+            />
+          </View>
         </View>
       )}
     </View>

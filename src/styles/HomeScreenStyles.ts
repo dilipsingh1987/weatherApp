@@ -48,8 +48,13 @@ export default StyleSheet.create({
     marginVertical: 10,
   },
   icon: {
-    width: 100,
-    height: 100,
+    width: 30,
+    height: 30,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
   },
   textStyle: {
     marginVertical: 4,
