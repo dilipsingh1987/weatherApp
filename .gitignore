@@ -42,7 +42,8 @@ jest-coverage/
 # OS Files
 Thumbs.db
 Desktop.ini
-
+# .gitignore
+.env
 # Bundles
 *.jsbundle
 *.pack
