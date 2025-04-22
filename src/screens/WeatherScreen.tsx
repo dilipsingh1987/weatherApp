@@ -31,9 +31,9 @@ const WeatherScreen = () => {
   };
 
   return (
-    <View style={[screenStyle.container, { backgroundColor: isDarkMode ? '#000' : '#fff' }]}>
+    <View style={[screenStyle.container, isDarkMode ? screenStyle.darkBg : screenStyle.lightBg]}>
       {lastCityLabel !== '' && (
-        <Text style={[screenStyle.textStyle, { marginBottom: 10 }]}>{lastCityLabel}</Text>
+        <Text style={[screenStyle.textStyle, screenStyle.marginBottom10]}>{lastCityLabel}</Text>
       )}
 
       <TextInput
@@ -41,7 +41,10 @@ const WeatherScreen = () => {
         placeholderTextColor={isDarkMode ? '#aaa' : '#555'}
         value={city}
         onChangeText={setCity}
-        style={[screenStyle.input, { color: isDarkMode ? '#fff' : '#000' }]}
+        style={[
+          screenStyle.input,
+          isDarkMode ? screenStyle.textInputDark : screenStyle.textInputLight,
+        ]}
       />
       <Button title="Get Weather" onPress={() => getWeather(city)} />
       <Button title="Clear Last Search" onPress={clearLastSearch} />

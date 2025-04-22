@@ -1,3 +1,4 @@
+// screenStyles.ts
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -60,5 +61,20 @@ export default StyleSheet.create({
     marginVertical: 4,
     fontSize: 18,
     color: '#888',
+  },
+  darkBg: {
+    backgroundColor: '#000',
+  },
+  lightBg: {
+    backgroundColor: '#fff',
+  },
+  textInputDark: {
+    color: '#fff',
+  },
+  textInputLight: {
+    color: '#000',
+  },
+  marginBottom10: {
+    marginBottom: 10,
   },
 });
