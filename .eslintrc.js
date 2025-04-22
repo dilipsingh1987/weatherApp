@@ -18,6 +18,7 @@ module.exports = {
         ignore: ['^@env$'], // <-- Add this line
       },
     ],
+    'no-console': 'warn', // or 'error' if you want it stricter
   },
   settings: {
    'import/resolver': {
