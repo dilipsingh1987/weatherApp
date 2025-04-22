@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { OPENWEATHER_API_KEY, BASE_URL } from '../config/apiConfig';
+import { WeatherData } from '../types/weather'; // Create this interface if not already
 
-export const fetchWeatherByCity = async (city: string) => {
+export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => {
   try {
-    //console.log('API KEY:', OPENWEATHER_API_KEY);
-
-    const response = await axios.get(`${BASE_URL}/weather`, {
+    const response = await axios.get<WeatherData>(`${BASE_URL}/weather`, {
       params: {
         q: city,
         appid: OPENWEATHER_API_KEY,
@@ -14,8 +13,12 @@ export const fetchWeatherByCity = async (city: string) => {
     });
 
     return response.data;
-  } catch (error: any) {
-    console.error('Weather API error:', error?.response?.data || error.message);
-    throw new Error(error?.response?.data?.message || 'Failed to fetch weather');
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      const apiMessage = error.response?.data?.message || error.message;
+      throw new Error(apiMessage);
+    }
+
+    throw new Error('Unknown error occurred while fetching weather');
   }
 };

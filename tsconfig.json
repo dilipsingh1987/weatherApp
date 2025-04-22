@@ -12,7 +12,12 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["@types/jest", "jest", "./src/types/env"]
+    "types": ["@types/jest", "jest", "./src/types/env"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    }
   },
   "exclude": ["node_modules"]
 }
+

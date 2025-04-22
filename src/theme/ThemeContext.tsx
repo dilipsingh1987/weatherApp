@@ -1,11 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  ReactNode,
-  useEffect,
-} from 'react';
-import {Appearance} from 'react-native';
+import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { Appearance } from 'react-native';
 
 type ThemeContextType = {
   isDarkMode: boolean;
@@ -14,24 +8,20 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({children}: {children: ReactNode}) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    Appearance.getColorScheme() === 'dark',
-  );
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [isDarkMode, setIsDarkMode] = useState(Appearance.getColorScheme() === 'dark');
 
   const toggleTheme = () => setIsDarkMode(prev => !prev);
 
   useEffect(() => {
-    const subscription = Appearance.addChangeListener(({colorScheme}) => {
+    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
       setIsDarkMode(colorScheme === 'dark');
     });
     return () => subscription.remove();
   }, []);
 
   return (
-    <ThemeContext.Provider value={{isDarkMode, toggleTheme}}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>{children}</ThemeContext.Provider>
   );
 };
 

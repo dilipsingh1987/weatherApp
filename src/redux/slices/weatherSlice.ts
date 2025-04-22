@@ -18,16 +18,16 @@ export const fetchWeather = createAsyncThunk(
     } catch (err) {
       return thunkAPI.rejectWithValue('Failed to fetch weather data.');
     }
-  }
+  },
 );
 
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchWeather.pending, (state) => {
+      .addCase(fetchWeather.pending, state => {
         state.loading = true;
         state.error = null;
       })

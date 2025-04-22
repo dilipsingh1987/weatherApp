@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,8 +14,8 @@ function App(): React.JSX.Element {
       <ThemeProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            <Stack.Screen 
-              name="Weather" 
+            <Stack.Screen
+              name="Weather"
               component={WeatherScreen}
               options={{ title: 'Weather Search Page' }}
             />

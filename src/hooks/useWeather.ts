@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/store';
 import { fetchWeather } from '../redux/slices/weatherSlice';
 
@@ -8,7 +7,7 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export const useWeather = () => {
   const dispatch = useAppDispatch();
-  const weather = useAppSelector((state) => state.weather);
+  const weather = useAppSelector(state => state.weather);
 
   const getWeather = (city: string) => {
     if (city.trim()) dispatch(fetchWeather(city));
