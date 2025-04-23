@@ -20,4 +20,21 @@ describe('fetchWeatherByCity', () => {
     const data = await fetchWeatherByCity(city);
     expect(data.name).toBe(city);
   });
+  it('should throw an error when city is not found', async () => {
+    const mock = new MockAdapter(axios);
+    const city = 'InvalidCity';
+
+    mock.onGet(`${BASE_URL}/weather`).reply(404, { message: 'city not found' });
+
+    await expect(fetchWeatherByCity(city)).rejects.toThrow('city not found');
+  });
+
+  it('should throw a generic error for network issues', async () => {
+    const mock = new MockAdapter(axios);
+    const city = 'London';
+
+    mock.onGet(`${BASE_URL}/weather`).networkError();
+
+    await expect(fetchWeatherByCity(city)).rejects.toThrow('Network Error');
+  });
 });
