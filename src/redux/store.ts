@@ -2,8 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import weatherReducer from './slices/weatherSlice';
 import rootSaga from './sagas/rootSaga';
-import createSagaMiddleware from 'redux-saga';
 
+const reduxSaga = require('redux-saga');
+const createSagaMiddleware = reduxSaga.default;
 const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
