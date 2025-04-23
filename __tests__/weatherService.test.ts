@@ -1,4 +1,3 @@
-// __tests__/weatherService.test.ts
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { fetchWeatherByCity } from '../src/services/weatherService';
