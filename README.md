@@ -1,9 +1,20 @@
 
 React Native Weather App
-A simple weather application built with React Native that allows users to search for the current weather by city name. It features a dark/light theme toggle, persistent last search using AsyncStorage, and data from the OpenWeatherMap API.
+A simple weather application built with React Native that allows users to search for the current weather by city name. It features a dark/light theme toggle, persistent last search using AsyncStorage, using Redux Toolkit, Redux-Saga and OpenWeatherMap API to show weather info.
 
-🚀 Getting Started
-📦 Prerequisites
+
+## Features
+
+- Search for any city’s weather
+- Debounced search input
+- Offline handling with NetInfo
+- Redux-Saga for async API calls
+- Unit tests with Jest + axios-mock-adapter
+- Styled using StyleSheet (no inline styles!)
+- ESLint & code formatting enforced
+
+Getting Started
+Prerequisites
 Node.js ≥ 16.x
 
 npm or yarn
@@ -58,7 +69,8 @@ src/
 ├── utils/             # Helper functions
 └── types/             # TypeScript interfaces
 </details>
-🧱 Architectural Decisions
+
+Architectural Decisions
 State Management: Redux Toolkit is used for managing weather-related state.
 
 API Layer: All network requests are abstracted in weatherService.ts to separate business logic from UI.
@@ -73,12 +85,12 @@ OpenWeatherMap API key is required to run the app.
 
 
 
-📸 ### 🔍 Search Weather
+### Search Weather
 
 ![image (1)](https://github.com/user-attachments/assets/cfbe618e-f1b8-4698-8b09-4482cebb5906)
 
 
-### 🌗 Dark Theme
+### Dark Theme
 
 ![image (3)](https://github.com/user-attachments/assets/12ff44f5-a44d-457e-95db-eabdf75758ce)
 
@@ -87,6 +99,6 @@ OpenWeatherMap API key is required to run the app.
 ![screenshot7](https://github.com/user-attachments/assets/7d72a6db-2ee8-4279-9f17-42c48497257e)
 
 
-📜 License
+License
 This project is for educational/demo purposes.
 
