@@ -87,19 +87,18 @@ OpenWeatherMap API key is required to run the app.
 
 ### Search Weather
 
-![image (1)](https://github.com/user-attachments/assets/dc274c7b-008f-49cf-a62f-d7175153e269)
-
+![image](https://github.com/user-attachments/assets/04d7e448-3b03-45d6-90f5-b5b2a69d524d)
 
 
 ### Dark Theme
 
-![image (3)](https://github.com/user-attachments/assets/29a82cdc-1be3-4f75-b4f3-dcc50ee4c05f)
+![image2](https://github.com/user-attachments/assets/43f97dbc-a72e-4be3-b989-2f9d3a11866d)
 
 
 
 ### Default Theme
 
-![Simulator Screenshot - iPhone 15 Pro - 2025-04-23 at 06 42 12](https://github.com/user-attachments/assets/fb765b9b-378b-4eaa-ba90-90f91ad21fb2)
+![Simulator Screenshot - iPhone 15 Pro - 2025-05-03 at 12 24 22](https://github.com/user-attachments/assets/328269c1-223b-4c16-af05-a5a608606651)
 
 
 License
