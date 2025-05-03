@@ -29,15 +29,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
     color: isDarkMode ? '#80cbc4' : '#004d40',
   };
 
-  const weatherIcon = data.weather[0].main.toLowerCase();
-  const iconSource =
-    weatherIcon === 'rain'
-      ? require('../assets/icons/icon_rainy.png')
-      : weatherIcon === 'clear'
-        ? require('../assets/icons/icon_sun.png')
-        : weatherIcon === 'clouds'
-          ? require('../assets/icons/icon_cloud.png')
-          : require('../assets/icons/icon_sun.png');
+  // Use OpenWeatherMap's icon from the API
+  const iconCode = data.weather[0].icon;
+  const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
   return (
     <View style={[stylesWeatherCard.card, cardStyle]}>
@@ -50,7 +44,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
           <Text style={[stylesWeatherCard.condition, conditionTextStyle]}>
             {data.weather[0].main}
           </Text>
-          <Image source={iconSource} style={screenStyle.icon} resizeMode="contain" />
+          <Image
+            source={{ uri: iconUrl }}
+            style={[screenStyle.icon, { width: 50, height: 50 }]}
+            resizeMode="contain"
+          />
         </View>
       </View>
     </View>
