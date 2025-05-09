@@ -20,8 +20,22 @@ export interface MainWeatherData {
   humidity: number;
 }
 
+export interface SysData {
+  country: string;
+  sunrise: number;
+  sunset: number;
+}
+
+export interface WindData {
+  speed: number;
+  deg: number;
+}
+
 export interface WeatherData {
   name: string;
   main: MainWeatherData;
   weather: WeatherCondition[];
+  sys: SysData;
+  wind: WindData;
+  dt: number; // Unix timestamp for current weather data time
 }
