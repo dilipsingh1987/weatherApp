@@ -55,7 +55,7 @@ const WeatherScreen = () => {
         {/* <Button title="Toggle Theme" onPress={toggleTheme} /> */}
         <ThemeToggle></ThemeToggle>
 
-        {loading && <ActivityIndicator />}
+        {loading && <ActivityIndicator testID="ActivityIndicator" />}
         {error && <Text style={screenStyle.textStyle}>{error}</Text>}
         {data && <WeatherCard data={data} />}
       </View>

@@ -5,7 +5,7 @@ import { weatherActions } from '../slices/weatherSlice';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { SagaIterator } from 'redux-saga';
 
-function* handleFetchWeather(action: PayloadAction<string>): SagaIterator {
+export function* handleFetchWeather(action: PayloadAction<string>): SagaIterator {
   const city = action.payload;
 
   const netState = yield call(netInfoFetch);

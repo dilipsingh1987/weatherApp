@@ -1,34 +1,36 @@
-import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { Appearance } from 'react-native';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-type ThemeContextType = {
+interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
-};
+}
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType>({
+  isDarkMode: false,
+  toggleTheme: () => {},
+});
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(Appearance.getColorScheme() === 'dark');
-
-  const toggleTheme = () => setIsDarkMode(prev => !prev);
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const subscription = Appearance.addChangeListener(({ colorScheme }) => {
-      setIsDarkMode(colorScheme === 'dark');
+    AsyncStorage.getItem('darkMode').then(value => {
+      if (value === 'true') {
+        setIsDarkMode(true);
+      }
     });
-    return () => subscription.remove();
   }, []);
+
+  const toggleTheme = () => {
+    const newValue = !isDarkMode;
+    setIsDarkMode(newValue);
+    AsyncStorage.setItem('darkMode', newValue.toString());
+  };
 
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>{children}</ThemeContext.Provider>
   );
 };
 
-export const useTheme = (): ThemeContextType => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
-};
+export const useTheme = () => useContext(ThemeContext);

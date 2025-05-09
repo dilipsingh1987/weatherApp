@@ -55,6 +55,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ data }) => {
       <View style={screenStyle.row}>
         <Text style={[stylesWeatherCard.condition, conditionTextStyle]}>{description}</Text>
         <Image
+          testID="weather-icon"
           source={{ uri: iconUrl }}
           style={[screenStyle.icon, { width: 50, height: 50 }]}
           resizeMode="contain"
