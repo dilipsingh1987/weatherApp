@@ -6,7 +6,7 @@ import ThemeToggleComponent from '../src/theme/ThemeToggleComponent';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   setItem: jest.fn(),
-  getItem: jest.fn(() => Promise.resolve(null)), // default: no saved theme
+  getItem: jest.fn(() => Promise.resolve(null)), // default: no saved value
 }));
 
 describe('ThemeContext', () => {
@@ -14,7 +14,7 @@ describe('ThemeContext', () => {
     jest.clearAllMocks();
   });
 
-  it('toggles to dark mode and persists it', async () => {
+  it('toggles from light to dark mode and persists it', async () => {
     const { getByTestId } = render(
       <ThemeProvider>
         <ThemeToggleComponent />
@@ -30,8 +30,8 @@ describe('ThemeContext', () => {
     expect(AsyncStorage.setItem).toHaveBeenCalledWith('darkMode', 'true');
   });
 
-  it('restores dark mode from AsyncStorage (simulating app restart)', async () => {
-    // Simulate that dark mode was stored
+  it('restores dark mode on mount if stored as true', async () => {
+    // Simulate dark mode persisted in storage
     (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce('true');
 
     const { getByTestId } = render(
@@ -45,8 +45,9 @@ describe('ThemeContext', () => {
     });
   });
 
-  it('defaults to light mode when no value stored', async () => {
-    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null); // simulate first launch
+  it('defaults to light mode when no theme is stored', async () => {
+    // Simulate first launch (no stored theme)
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null);
 
     const { getByTestId } = render(
       <ThemeProvider>

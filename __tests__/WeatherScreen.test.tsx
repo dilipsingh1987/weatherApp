@@ -11,6 +11,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   removeItem: jest.fn(),
 }));
 
+// Mock separated components
 jest.mock('../src/components/ThemeToggle', () => 'ThemeToggle');
 jest.mock('../src/components/WeatherCard', () => 'WeatherCard');
 
@@ -18,7 +19,7 @@ describe('WeatherScreen', () => {
   const mockGetWeather = jest.fn();
 
   const mockWeather = {
-    city: 'London', // ✅ Add this line
+    city: 'London',
     data: {
       name: 'London',
       main: {
@@ -52,9 +53,15 @@ describe('WeatherScreen', () => {
     );
 
   it('renders input and buttons', () => {
-    const { getByPlaceholderText, getByText } = renderWithTheme();
+    const { getByPlaceholderText, getByText } = render(<WeatherScreen />);
+
     expect(getByPlaceholderText('Enter city')).toBeTruthy();
-    expect(getByText('Get Weather')).toBeTruthy();
+    expect(getByText('Search')).toBeTruthy();
+
+    // 🔑 Tap the ☰ menu button to reveal dropdown options
+    fireEvent.press(getByText('☰'));
+
+    // ✅ Now this will work because the menu is visible
     expect(getByText('Clear Last Search')).toBeTruthy();
   });
 
@@ -62,13 +69,16 @@ describe('WeatherScreen', () => {
     const { getByPlaceholderText, getByText } = renderWithTheme();
     const input = getByPlaceholderText('Enter city');
     fireEvent.changeText(input, 'London');
-    fireEvent.press(getByText('Get Weather'));
+    fireEvent.press(getByText('Search')); // updated label
     expect(mockGetWeather).toHaveBeenCalledWith('London');
   });
 
   it('clears last search when Clear button pressed', async () => {
     const { getByText } = renderWithTheme();
+
+    fireEvent.press(getByText('☰')); // open menu first
     fireEvent.press(getByText('Clear Last Search'));
+
     await waitFor(() => {
       expect(AsyncStorage.removeItem).toHaveBeenCalledWith('lastCity');
     });

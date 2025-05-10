@@ -1,10 +1,21 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../theme/ThemeContext';
+import screenStyle from '../styles/screenStyles';
 
-const ThemeToggle: React.FC = () => {
+const ThemeToggle = ({ onClose }: { onClose?: () => void }) => {
   const { toggleTheme } = useTheme();
-  return <Button title="Toggle Theme" onPress={toggleTheme} />;
+
+  const handleToggle = () => {
+    toggleTheme();
+    onClose?.();
+  };
+
+  return (
+    <TouchableOpacity onPress={handleToggle}>
+      <Text style={screenStyle.menuItems}>Toggle Theme</Text>
+    </TouchableOpacity>
+  );
 };
 
 export default ThemeToggle;

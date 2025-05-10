@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, TextInput, Button, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useWeather } from '../hooks/useWeather';
 import { useTheme } from '../theme/ThemeContext';
 import screenStyle from '../styles/screenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ThemeToggle from '../components/ThemeToggle';
 import WeatherCard from '../components/WeatherCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import ThemeToggle from '../components/ThemeToggle';
 
 const WeatherScreen = () => {
   const { isDarkMode } = useTheme();
   const [city, setCity] = useState('');
   const [lastCityLabel, setLastCityLabel] = useState('');
   const { data, loading, error, getWeather } = useWeather();
+  const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -31,15 +32,47 @@ const WeatherScreen = () => {
     setCity('');
   };
 
+  const toggleMenu = () => setMenuVisible(!menuVisible);
+
   return (
     <SafeAreaView
       style={[screenStyle.container, isDarkMode ? screenStyle.darkBg : screenStyle.lightBg]}
     >
-      <View>
-        {lastCityLabel !== '' && (
-          <Text style={[screenStyle.textStyle, screenStyle.marginBottom10]}>{lastCityLabel}</Text>
-        )}
+      {/* Header with Menu */}
+      <View style={screenStyle.headerContainer}>
+        <TouchableOpacity onPress={toggleMenu} style={screenStyle.menuButton}>
+          <Text
+            style={[
+              screenStyle.menuIcon,
+              isDarkMode ? screenStyle.menuIconDark : screenStyle.menuIconLight,
+            ]}
+          >
+            ☰
+          </Text>
+        </TouchableOpacity>
 
+        {menuVisible && (
+          <View style={screenStyle.dropdownMenu}>
+            <TouchableOpacity
+              onPress={() => {
+                clearLastSearch();
+                setMenuVisible(false);
+              }}
+            >
+              <Text style={screenStyle.menuItems}>Clear Last Search</Text>
+            </TouchableOpacity>
+            <ThemeToggle onClose={() => setMenuVisible(false)} />
+          </View>
+        )}
+      </View>
+
+      {/* Last City Label */}
+      {lastCityLabel !== '' && (
+        <Text style={[screenStyle.textStyle, screenStyle.marginBottom10]}>{lastCityLabel}</Text>
+      )}
+
+      {/* Search Input */}
+      <View style={screenStyle.inputWrapper}>
         <TextInput
           placeholder="Enter city"
           placeholderTextColor={isDarkMode ? '#aaa' : '#555'}
@@ -48,17 +81,25 @@ const WeatherScreen = () => {
           style={[
             screenStyle.input,
             isDarkMode ? screenStyle.textInputDark : screenStyle.textInputLight,
+            screenStyle.textInputWithButton,
           ]}
         />
-        <Button title="Get Weather" onPress={() => getWeather(city)} />
-        <Button title="Clear Last Search" onPress={clearLastSearch} />
-        {/* <Button title="Toggle Theme" onPress={toggleTheme} /> */}
-        <ThemeToggle></ThemeToggle>
-
-        {loading && <ActivityIndicator testID="ActivityIndicator" />}
-        {error && <Text style={screenStyle.textStyle}>{error}</Text>}
-        {data && <WeatherCard data={data} />}
+        <TouchableOpacity onPress={() => getWeather(city)} style={screenStyle.searchButton}>
+          <Text
+            style={[
+              screenStyle.searchText,
+              isDarkMode ? screenStyle.searchTextDark : screenStyle.searchTextLight,
+            ]}
+          >
+            Search
+          </Text>
+        </TouchableOpacity>
       </View>
+
+      {/* Loader / Error / Weather Card */}
+      {loading && <ActivityIndicator testID="ActivityIndicator" />}
+      {error && <Text style={screenStyle.textStyle}>{error}</Text>}
+      {data && <WeatherCard data={data} />}
     </SafeAreaView>
   );
 };

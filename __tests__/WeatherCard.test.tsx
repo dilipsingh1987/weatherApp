@@ -33,46 +33,42 @@ const mockWeatherData: WeatherData = {
   dt: 1715195790,
 };
 
-describe('WeatherCard', () => {
-  it('renders correctly with light mode', () => {
-    const { getByText } = render(
-      <ThemeContext.Provider value={{ isDarkMode: false, toggleTheme: jest.fn() }}>
-        <WeatherCard data={mockWeatherData} />
-      </ThemeContext.Provider>,
-    );
+const renderWithTheme = (isDarkMode = false) =>
+  render(
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme: jest.fn() }}>
+      <WeatherCard data={mockWeatherData} />
+    </ThemeContext.Provider>,
+  );
 
-    expect(getByText('New York, US')).toBeTruthy();
+describe('WeatherCard', () => {
+  it('renders correctly in light mode', () => {
+    const { getByText } = renderWithTheme(false);
+    expect(getByText('New York')).toBeTruthy();
+    expect(getByText('US')).toBeTruthy();
     expect(getByText('clear sky')).toBeTruthy();
     expect(getByText('25°C')).toBeTruthy();
-    expect(getByText('Feels Like: 27°C')).toBeTruthy();
+    expect(getByText(/Feels like:\s*27\s*°C/i)).toBeTruthy();
     expect(getByText('Humidity: 60%')).toBeTruthy();
     expect(getByText('Pressure: 1012 hPa')).toBeTruthy();
-    expect(getByText('Wind: 4.63 m/s, Direction: 350°')).toBeTruthy();
-    expect(getByText(/Sunrise:/)).toBeTruthy();
-    expect(getByText(/Sunset:/)).toBeTruthy();
-    expect(getByText(/Reported at:/)).toBeTruthy();
+    expect(getByText('Wind: 4.63 kph')).toBeTruthy();
+    expect(getByText('Direction: 350°')).toBeTruthy();
+    expect(getByText('Sunrise')).toBeTruthy();
+    expect(getByText('Sunset')).toBeTruthy();
+    expect(getByText('Moonrise')).toBeTruthy();
+    expect(getByText('Moonset')).toBeTruthy();
   });
 
-  it('renders correctly with dark mode', () => {
-    const { getByText } = render(
-      <ThemeContext.Provider value={{ isDarkMode: true, toggleTheme: jest.fn() }}>
-        <WeatherCard data={mockWeatherData} />
-      </ThemeContext.Provider>,
-    );
-
-    expect(getByText('New York, US')).toBeTruthy();
+  it('renders correctly in dark mode', () => {
+    const { getByText } = renderWithTheme(true);
+    expect(getByText('New York')).toBeTruthy();
+    expect(getByText('US')).toBeTruthy();
     expect(getByText('clear sky')).toBeTruthy();
     expect(getByText('25°C')).toBeTruthy();
   });
 
-  it('renders correct weather icon URL', () => {
-    const { getByTestId } = render(
-      <ThemeContext.Provider value={{ isDarkMode: false, toggleTheme: jest.fn() }}>
-        <WeatherCard data={mockWeatherData} />
-      </ThemeContext.Provider>,
-    );
-
-    const image = getByTestId('weather-icon');
-    expect(image.props.source.uri).toContain('https://openweathermap.org/img/wn/01d@2x.png');
+  it('renders correct weather icon', () => {
+    const { getByTestId } = renderWithTheme();
+    const icon = getByTestId('weather-icon');
+    expect(icon.props.source.uri).toBe('https://openweathermap.org/img/wn/01d@2x.png');
   });
 });
