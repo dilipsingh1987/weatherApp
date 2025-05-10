@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useWeather } from '../hooks/useWeather';
 import { useTheme } from '../theme/ThemeContext';
-import screenStyle from '../styles/screenStyles';
+import screenStyle, { darkStyles, lightStyles } from '../styles/screenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WeatherCard from '../components/WeatherCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ThemeToggle from '../components/ThemeToggle';
 
 const WeatherScreen = () => {
   const { isDarkMode } = useTheme();
   const [city, setCity] = useState('');
   const [lastCityLabel, setLastCityLabel] = useState('');
   const { data, loading, error, getWeather } = useWeather();
-  const [menuVisible, setMenuVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -25,47 +23,12 @@ const WeatherScreen = () => {
       }
     })();
   }, []);
-
-  const clearLastSearch = async () => {
-    await AsyncStorage.removeItem('lastCity');
-    setLastCityLabel('');
-    setCity('');
-  };
-
-  const toggleMenu = () => setMenuVisible(!menuVisible);
+  const styles = isDarkMode ? darkStyles : lightStyles;
 
   return (
     <SafeAreaView
       style={[screenStyle.container, isDarkMode ? screenStyle.darkBg : screenStyle.lightBg]}
     >
-      {/* Header with Menu */}
-      <View style={screenStyle.headerContainer}>
-        <TouchableOpacity onPress={toggleMenu} style={screenStyle.menuButton}>
-          <Text
-            style={[
-              screenStyle.menuIcon,
-              isDarkMode ? screenStyle.menuIconDark : screenStyle.menuIconLight,
-            ]}
-          >
-            ☰
-          </Text>
-        </TouchableOpacity>
-
-        {menuVisible && (
-          <View style={screenStyle.dropdownMenu}>
-            <TouchableOpacity
-              onPress={() => {
-                clearLastSearch();
-                setMenuVisible(false);
-              }}
-            >
-              <Text style={screenStyle.menuItems}>Clear Last Search</Text>
-            </TouchableOpacity>
-            <ThemeToggle onClose={() => setMenuVisible(false)} />
-          </View>
-        )}
-      </View>
-
       {/* Last City Label */}
       {lastCityLabel !== '' && (
         <Text style={[screenStyle.textStyle, screenStyle.marginBottom10]}>{lastCityLabel}</Text>
@@ -75,7 +38,7 @@ const WeatherScreen = () => {
       <View style={screenStyle.inputWrapper}>
         <TextInput
           placeholder="Enter city"
-          placeholderTextColor={isDarkMode ? '#aaa' : '#555'}
+          placeholderTextColor={styles.placeholder.color}
           value={city}
           onChangeText={setCity}
           style={[

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../theme/ThemeContext';
-import screenStyle from '../styles/screenStyles';
+import { themeStyles } from '../styles/themeStyles';
 
 const ThemeToggle = ({ onClose }: { onClose?: () => void }) => {
-  const { toggleTheme } = useTheme();
+  const { toggleTheme, isDarkMode } = useTheme();
 
   const handleToggle = () => {
     toggleTheme();
@@ -13,7 +13,7 @@ const ThemeToggle = ({ onClose }: { onClose?: () => void }) => {
 
   return (
     <TouchableOpacity onPress={handleToggle}>
-      <Text style={screenStyle.menuItems}>Toggle Theme</Text>
+      <Text style={isDarkMode ? themeStyles.darkText : themeStyles.lightText}>Toggle Theme</Text>
     </TouchableOpacity>
   );
 };

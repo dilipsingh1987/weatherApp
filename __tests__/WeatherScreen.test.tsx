@@ -11,8 +11,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   removeItem: jest.fn(),
 }));
 
-// Mock separated components
-jest.mock('../src/components/ThemeToggle', () => 'ThemeToggle');
+// Mock components
 jest.mock('../src/components/WeatherCard', () => 'WeatherCard');
 
 describe('WeatherScreen', () => {
@@ -41,8 +40,8 @@ describe('WeatherScreen', () => {
   };
 
   beforeEach(() => {
-    jest.spyOn(useWeatherHook, 'useWeather').mockReturnValue(mockWeather);
     jest.clearAllMocks();
+    jest.spyOn(useWeatherHook, 'useWeather').mockReturnValue(mockWeather);
   });
 
   const renderWithTheme = (isDarkMode = false) =>
@@ -52,45 +51,39 @@ describe('WeatherScreen', () => {
       </ThemeContext.Provider>,
     );
 
-  it('renders input and buttons', () => {
-    const { getByPlaceholderText, getByText } = render(<WeatherScreen />);
-
+  it('renders input and search button', () => {
+    const { getByPlaceholderText, getByText } = renderWithTheme();
     expect(getByPlaceholderText('Enter city')).toBeTruthy();
     expect(getByText('Search')).toBeTruthy();
-
-    // 🔑 Tap the ☰ menu button to reveal dropdown options
-    fireEvent.press(getByText('☰'));
-
-    // ✅ Now this will work because the menu is visible
-    expect(getByText('Clear Last Search')).toBeTruthy();
   });
 
   it('calls getWeather with entered city', () => {
     const { getByPlaceholderText, getByText } = renderWithTheme();
     const input = getByPlaceholderText('Enter city');
+
     fireEvent.changeText(input, 'London');
-    fireEvent.press(getByText('Search')); // updated label
+    fireEvent.press(getByText('Search'));
+
     expect(mockGetWeather).toHaveBeenCalledWith('London');
   });
 
-  it('clears last search when Clear button pressed', async () => {
-    const { getByText } = renderWithTheme();
-
-    fireEvent.press(getByText('☰')); // open menu first
-    fireEvent.press(getByText('Clear Last Search'));
-
-    await waitFor(() => {
-      expect(AsyncStorage.removeItem).toHaveBeenCalledWith('lastCity');
-    });
-  });
-
-  it('loads last city from AsyncStorage on mount', async () => {
+  it('loads last city from AsyncStorage on mount and fetches weather', async () => {
     (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce('Paris');
+
     renderWithTheme();
+
     await waitFor(() => {
       expect(AsyncStorage.getItem).toHaveBeenCalledWith('lastCity');
       expect(mockGetWeather).toHaveBeenCalledWith('Paris');
     });
+  });
+
+  it('shows last searched city label if present', async () => {
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce('Berlin');
+
+    const { findByText } = renderWithTheme();
+
+    expect(await findByText('Last searched city: Berlin')).toBeTruthy();
   });
 
   it('displays error message', () => {
@@ -98,6 +91,7 @@ describe('WeatherScreen', () => {
       ...mockWeather,
       error: 'City not found',
     });
+
     const { getByText } = renderWithTheme();
     expect(getByText('City not found')).toBeTruthy();
   });
@@ -107,6 +101,7 @@ describe('WeatherScreen', () => {
       ...mockWeather,
       loading: true,
     });
+
     const { getByTestId } = renderWithTheme();
     expect(getByTestId('ActivityIndicator')).toBeTruthy();
   });

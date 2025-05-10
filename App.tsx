@@ -6,6 +6,7 @@ import store from './src/redux/store';
 import WeatherScreen from './src/screens/WeatherScreen';
 import { ThemeProvider } from './src/theme/ThemeContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import MenuButton from './src/components/MenuButton';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,7 @@ function App(): React.JSX.Element {
               <Stack.Screen
                 name="Weather"
                 component={WeatherScreen}
-                options={{ title: 'Weather Search Page' }}
+                options={{ title: 'Weather Search Page', headerRight: () => <MenuButton /> }}
               />
             </Stack.Navigator>
           </NavigationContainer>

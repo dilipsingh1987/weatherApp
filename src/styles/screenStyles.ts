@@ -7,10 +7,6 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
-  inputWrapper: {
-    position: 'relative',
-    justifyContent: 'center',
-  },
   input: {
     borderWidth: 1,
     borderColor: '#888',
@@ -18,20 +14,31 @@ export default StyleSheet.create({
     marginBottom: 10,
     borderRadius: 8,
   },
+  textStyle: {
+    marginVertical: 4,
+    fontSize: 18,
+    color: '#888',
+  },
+  darkBg: {
+    backgroundColor: '#000',
+  },
+  lightBg: {
+    backgroundColor: '#fff',
+  },
   textInputDark: {
     color: '#fff',
   },
   textInputLight: {
     color: '#000',
   },
-  textStyle: {
-    marginVertical: 4,
-    fontSize: 18,
-    color: '#888',
-  },
   marginBottom10: {
     marginBottom: 10,
   },
+  inputWrapper: {
+    position: 'relative',
+    justifyContent: 'center',
+  },
+
   searchButton: {
     position: 'absolute',
     right: 5,
@@ -43,18 +50,17 @@ export default StyleSheet.create({
     borderRadius: 4,
     zIndex: 1,
   },
-  textInputWithButton: {
-    paddingRight: 70,
-  },
   headerContainer: {
     position: 'absolute',
     top: 10,
     right: 10,
     zIndex: 10,
   },
+
   menuButton: {
     padding: 10,
   },
+
   dropdownMenu: {
     position: 'absolute',
     top: 40,
@@ -65,16 +71,64 @@ export default StyleSheet.create({
     elevation: 4,
     padding: 10,
   },
+
   menuItems: {
     paddingVertical: 8,
     paddingHorizontal: 12,
     fontSize: 16,
     color: '#333',
   },
-  darkBg: {
-    backgroundColor: '#000',
+  menuIcon: {
+    fontSize: 18,
   },
-  lightBg: {
+  menuIconLight: {
+    color: '#000',
+  },
+  menuIconDark: {
+    color: '#fff',
+  },
+  searchText: {
+    fontSize: 16,
+  },
+  searchTextDark: {
+    color: '#fff',
+  },
+  searchTextLight: {
+    color: '#000',
+  },
+  textInputWithButton: {
+    paddingRight: 70,
+  },
+});
+
+export const lightStyles = StyleSheet.create({
+  background: {
     backgroundColor: '#fff',
+  },
+  input: {
+    backgroundColor: '#f0f0f0',
+    color: '#000',
+  },
+  buttonText: {
+    color: '#fff',
+  },
+  placeholder: {
+    color: '#555',
+  },
+});
+
+export const darkStyles = StyleSheet.create({
+  background: {
+    backgroundColor: '#121212',
+  },
+  input: {
+    backgroundColor: '#333',
+    color: '#fff',
+  },
+  buttonText: {
+    color: '#fff',
+  },
+  placeholder: {
+    color: '#aaa',
   },
 });
