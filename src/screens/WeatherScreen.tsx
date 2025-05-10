@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { useWeather } from '../hooks/useWeather';
 import { useTheme } from '../theme/ThemeContext';
-import screenStyle, { darkStyles, lightStyles } from '../styles/screenStyles';
+import screenStyle, {
+  darkColors,
+  darkStyles,
+  lightColors,
+  lightStyles,
+} from '../styles/screenStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import WeatherCard from '../components/WeatherCard';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,7 +17,7 @@ const WeatherScreen = () => {
   const [city, setCity] = useState('');
   const [lastCityLabel, setLastCityLabel] = useState('');
   const { data, loading, error, getWeather } = useWeather();
-
+  const themeColors = isDarkMode ? darkColors : lightColors;
   useEffect(() => {
     (async () => {
       const lastCity = await AsyncStorage.getItem('lastCity');
@@ -48,7 +53,11 @@ const WeatherScreen = () => {
             screenStyle.textInputWithButton,
           ]}
         />
-        <TouchableOpacity onPress={() => getWeather(city)} style={screenStyle.searchButton}>
+
+        <TouchableOpacity
+          onPress={() => getWeather(city)}
+          style={[screenStyle.searchButton, { backgroundColor: themeColors.header }]}
+        >
           <Text
             style={[
               screenStyle.searchText,

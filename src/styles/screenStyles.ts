@@ -43,10 +43,9 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 5,
     top: '50%',
-    transform: [{ translateY: -20 }],
-    paddingVertical: 4,
+    transform: [{ translateY: -20.8 }],
+    paddingVertical: 5,
     paddingHorizontal: 8,
-    backgroundColor: '#ccc',
     borderRadius: 4,
     zIndex: 1,
   },
@@ -88,7 +87,7 @@ export default StyleSheet.create({
     color: '#fff',
   },
   searchText: {
-    fontSize: 16,
+    fontSize: 17,
   },
   searchTextDark: {
     color: '#fff',
