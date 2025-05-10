@@ -22,7 +22,7 @@ describe('MenuButton', () => {
     render(
       <ThemeContext.Provider value={{ isDarkMode, toggleTheme: jest.fn() }}>
         <MenuButton />
-      </ThemeContext.Provider>
+      </ThemeContext.Provider>,
     );
 
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe('MenuButton', () => {
 
   it('clears last search and closes menu on "Clear Last Search" press', async () => {
     const { getByTestId, getByText, queryByText } = renderWithTheme();
-    
+
     // Open the menu
     fireEvent.press(getByTestId('menu-button'));
 

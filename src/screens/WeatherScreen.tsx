@@ -27,6 +27,7 @@ const WeatherScreen = () => {
 
   return (
     <SafeAreaView
+      edges={['left', 'right', 'bottom']}
       style={[screenStyle.container, isDarkMode ? screenStyle.darkBg : screenStyle.lightBg]}
     >
       {/* Last City Label */}
