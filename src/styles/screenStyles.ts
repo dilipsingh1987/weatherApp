@@ -132,3 +132,15 @@ export const darkStyles = StyleSheet.create({
     color: '#aaa',
   },
 });
+
+export const lightColors = {
+  background: '#f2f2f2',
+  text: '#000',
+  header: '#e0e0e0',
+};
+
+export const darkColors = {
+  background: '#121212',
+  text: '#fff',
+  header: '#1f1f1f',
+};

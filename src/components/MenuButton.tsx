@@ -15,8 +15,8 @@ const MenuButton = () => {
   };
 
   const menuIcon = isDarkMode
-    ? require('../assets/icons/menu_icon_dark.png')
-    : require('../assets/icons/menu_icon_light.png');
+    ? require('../assets/icons/menu_icon_light.png')
+    : require('../assets/icons/menu_icon_dark.png');
 
   return (
     <>

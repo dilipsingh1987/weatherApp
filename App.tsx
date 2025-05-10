@@ -4,11 +4,37 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import WeatherScreen from './src/screens/WeatherScreen';
-import { ThemeProvider } from './src/theme/ThemeContext';
+import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import MenuButton from './src/components/MenuButton';
+import { darkColors, lightColors } from './src/styles/screenStyles';
 
 const Stack = createNativeStackNavigator();
+
+function WeatherStack() {
+  const { isDarkMode } = useTheme();
+  const themeColors = isDarkMode ? darkColors : lightColors;
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: themeColors.header,
+        },
+        headerTitleStyle: {
+          color: themeColors.text,
+        },
+        headerRight: () => <MenuButton />,
+      }}
+    >
+      <Stack.Screen
+        name="Weather"
+        component={WeatherScreen}
+        options={{ title: 'Weather Search Page' }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 function App(): React.JSX.Element {
   return (
@@ -16,13 +42,7 @@ function App(): React.JSX.Element {
       <ThemeProvider>
         <SafeAreaProvider>
           <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Weather"
-                component={WeatherScreen}
-                options={{ title: 'Weather Search Page', headerRight: () => <MenuButton /> }}
-              />
-            </Stack.Navigator>
+            <WeatherStack />
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>
