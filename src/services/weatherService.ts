@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { OPENWEATHER_API_KEY, BASE_URL } from '../config/apiConfig';
-import { WeatherData } from '../types/weather'; // Create this interface if not already
+import { WeatherData } from '../types/weather';
 
 export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => {
   if (!OPENWEATHER_API_KEY) {
