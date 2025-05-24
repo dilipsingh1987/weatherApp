@@ -13,6 +13,11 @@ A simple weather application built with React Native that allows users to search
 - Styled using StyleSheet (no inline styles!)
 - ESLint & code formatting enforced
 
+## Duplicate the `.env.example` file and rename it to `.env`:
+
+cp .env.example .env
+
+
 Getting Started
 Prerequisites
 Node.js ≥ 16.x

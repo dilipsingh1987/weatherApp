@@ -3,6 +3,11 @@ import { OPENWEATHER_API_KEY, BASE_URL } from '../config/apiConfig';
 import { WeatherData } from '../types/weather'; // Create this interface if not already
 
 export const fetchWeatherByCity = async (city: string): Promise<WeatherData> => {
+  if (!OPENWEATHER_API_KEY) {
+    throw new Error(
+      'Missing OpenWeather API key. Please define OPENWEATHER_API_KEY in your .env file.',
+    );
+  }
   try {
     const response = await axios.get<WeatherData>(`${BASE_URL}/weather`, {
       params: {
